@@ -1,6 +1,6 @@
 # medtrack
 Приложение для отслеживания принятия лекарств
-
+https://www.figma.com/file/o5lXpxf7zazWb2czW7pSMG/MedTrack?type=design&node-id=0-1&mode=design&t=SPMKRLE02ASFwUrL-0
 # 1 спринт 25.09 - 08.10
 1. Изучение предметной области - Комаров, Мальцева
 2. Установка и анализ приложений конкурентов - Комаров, Мальцева
