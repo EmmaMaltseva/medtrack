@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading'
-import Main from './components/Main'
+import MainStack from './navigate'
+
 /* Ассинхронно подключаем шрифты */
 const fonts = () => Font.loadAsync({ 
   'mp-bold': require('./assets/fonts/Manrope-Bold.ttf'),
@@ -14,7 +15,7 @@ export default function App() {
 
   if(font) {
     return (
-      <Main />
+      <MainStack />
     );
   } else {
     return (
