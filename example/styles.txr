@@ -1,0 +1,36 @@
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, SafeAreaView, Alert, View, Platform } from 'react-native';
+
+export default function App() {
+const handleButtonPress = () => Alert.alert("itProger", "Main Massage",[
+  {text: "Да", onPress: () => console.log('Yes Button')},
+  {text: "Отмена", onPress: () => console.log('No Button')}
+]);
+
+const handleButtonPress2 = () => Alert.prompt("itProger", "Main Massage", text => console.log(text));
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <Text>MedTrack</Text>
+      <View style={styles.box}>
+        <Text>Hello</Text>
+      </View>
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  box: {
+    backgroundColor: 'yellow',
+    width: '50%',
+    height: 150,
+    opacity: 0.5,
+    position: 'absolute',
+    top: Platform.OS === 'ios' ? 150 : 50,
+    left: -150
+  }
+});

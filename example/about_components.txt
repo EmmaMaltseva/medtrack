@@ -1,0 +1,35 @@
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, SafeAreaView, Button, Alert, Image, TouchableWithoutFeedback } from 'react-native';
+
+export default function App() {
+const handleButtonPress = () => Alert.alert("itProger", "Main Massage",[
+  {text: "Да", onPress: () => console.log('Yes Button')},
+  {text: "Отмена", onPress: () => console.log('No Button')}
+]);
+
+const handleButtonPress2 = () => Alert.prompt("itProger", "Main Massage", text => console.log(text));
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <Text>MedTrack</Text>
+      <Button title='Нажми на меня' onPress={handleButtonPress}/>
+      <Button title='Кнопка 2' onPress={handleButtonPress2}/>
+      <TouchableWithoutFeedback onPress={handleButtonPress}> {/*Добавили  компонент TouchableHighlight для присвоения функции нажатия на картинку*/}
+        <Image blurRadius={1} source={{
+          width: 200,
+          height: 150,
+          uri: "https://platinumlist.net/guide/wp-content/uploads/2023/03/8359_img_worlds_of_adventure-big1613913137.jpg-1024x683.webp"
+        }}/>
+      </TouchableWithoutFeedback>
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
