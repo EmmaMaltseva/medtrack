@@ -13,9 +13,9 @@ export default function Main({ navigation }) {
   return (
     <View style={gStyle.main}>
       <Text style={gStyle.title}>MedTrack</Text>
-      <Button title='Открыть страницу' onPress={loadScene}/>
+      {/*в data прописываем с каким массивом работаем*/}
       <FlatList data={pills} renderItem={({item}) => (
-        <TouchableOpacity onPress={()=> navigation.navigate('PillCard')}>
+        <TouchableOpacity onPress={()=> navigation.navigate('PillCard', item)}>
           <Text>{ item.name }</Text>
           <Text>{ item.type }</Text>
           <Text>{ item.timeToTake }</Text>
