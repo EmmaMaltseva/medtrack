@@ -7,7 +7,8 @@ import MainStack from './navigate'
 /* Ассинхронно подключаем шрифты */
 const fonts = () => Font.loadAsync({ 
   'mp-bold': require('./assets/fonts/Manrope-Bold.ttf'),
-  'mp-semi-bold': require('./assets/fonts/Manrope-SemiBold.ttf')
+  'mp-semi-bold': require('./assets/fonts/Manrope-SemiBold.ttf'),
+  'mp-light': require('./assets/fonts/Manrope-Light.ttf')
 })
 
 export default function App() {

@@ -1,15 +1,15 @@
 import { StyleSheet } from 'react-native';
 
 export const gStyle = StyleSheet.create({
+  mainmain: {
+    backgroundColor: '#F4F5F7'
+  },
+
   main: {
     flex: 1,
     padding: 20,
-    paddingTop: 50
-  },
-  title: {
-    fontSize: 20,
-    color: '#333',
-    fontFamily: 'mp-bold',
-    textAlign: 'center'
+    paddingTop: 50,
+    backgroundColor: 'rgb(255,255,255)',
+    borderRadius: 24
   }
 })
