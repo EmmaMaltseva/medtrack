@@ -35,6 +35,14 @@ export default function Main({ navigation }) {
   const addPill = (pill) => {
     setPills((list) => {
       pill.id = Math.random().toString();
+      pill.img = (() => {
+          if (pill.type == "капля") {
+            return require('../assets/img/drop.png');
+          } else {
+            return require('../assets/img/pill.png');
+          }
+        }
+      )
       return [
         pill,
         ...list
@@ -46,12 +54,12 @@ export default function Main({ navigation }) {
   return (
     <View style={gStyle.main}>
       <Modal visible={modalWindow}>
-        <View style={gStyle.formAddPill}>
-          <div style={gStyle.formMainLineContainer}>
-            <Text style={styles.formPillTitle}>Добавление лекарства</Text>
+        <View style={styles.formAddPill}>
+          <View style={styles.formAddPilTitle}>
+            <Text style={styles.formAddPillTitleText}>Добавление лекарства</Text>
             <AntDesign name="close" size={30} color="black" style={styles.buttonClose} onPress={() => setModalWindow(false)}/>
-            <Form addPill={addPill}/>
-          </div>
+          </View>
+          <Form addPill={addPill}/>
         </View>  
       </Modal>
       <Text style={ styles.header }>
@@ -169,21 +177,27 @@ const styles = StyleSheet.create({
   },
 
   formAddPill: {
-
+    marginLeft: 10,
+    marginRight: 10
   },
 
-  formMainLineContainer: {
-    display: 'flex',
+  formAddPilTitle: {
+    flex: 1,
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+    alignItems: 'center'
   },
 
-  formPillTitle: {
-
+  formAddPillTitleText: {
+    paddingLeft: 80,
+    fontFamily: 'mp-semi-bold',
+    fontSize: 18,
+    color: '#39343E'
   },
 
   buttonClose: {
-
-
+    marginRight: 20
   }
   
 });
