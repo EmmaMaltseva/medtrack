@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, FlatList, Image, Button, Modal } from 'react-native';
 import { gStyle } from '../styles/style';
 import { AntDesign } from '@expo/vector-icons';
-
+import Form from "./Form"
 class Question extends React.Component {
   render() {
     return <h3> Lets go for a <FaBeer />? </h3>
@@ -32,14 +32,26 @@ export default function Main({ navigation }) {
 
   const [modalWindow, setModalWindow] = useState(false);
 
+  const addPill = (pill) => {
+    setPills((list) => {
+      pill.id = Math.random().toString();
+      return [
+        pill,
+        ...list
+      ]
+    })
+    setModalWindow(false);
+  }
+
   return (
     <View style={gStyle.main}>
       <Modal visible={modalWindow}>
         <View style={gStyle.formAddPill}>
-          <View style={gStyle.formMainLineContainer}>
-            <Text style={styles.formPill}>Добавление лекарства</Text>
+          <div style={gStyle.formMainLineContainer}>
+            <Text style={styles.formPillTitle}>Добавление лекарства</Text>
             <AntDesign name="close" size={30} color="black" style={styles.buttonClose} onPress={() => setModalWindow(false)}/>
-          </View>
+            <Form addPill={addPill}/>
+          </div>
         </View>  
       </Modal>
       <Text style={ styles.header }>
@@ -161,17 +173,16 @@ const styles = StyleSheet.create({
   },
 
   formMainLineContainer: {
-    margin: 0,
     display: 'flex',
-    flex: 1,
     flexDirection: 'row',
-    alignItems: 'center',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between'
+  },
+
+  formPillTitle: {
+
   },
 
   buttonClose: {
-   
+
 
   }
   
