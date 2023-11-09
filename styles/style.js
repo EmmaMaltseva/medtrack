@@ -10,6 +10,7 @@ export const gStyle = StyleSheet.create({
     padding: 20,
     paddingTop: 50,
     backgroundColor: 'rgb(255,255,255)',
-    borderRadius: 24
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24
   }
 })

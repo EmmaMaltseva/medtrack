@@ -1,6 +1,13 @@
-import React, { Fragment, useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, FlatList, Image } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, Text, TouchableOpacity, FlatList, Image, Button, Modal } from 'react-native';
 import { gStyle } from '../styles/style';
+import { AntDesign } from '@expo/vector-icons';
+
+class Question extends React.Component {
+  render() {
+    return <h3> Lets go for a <FaBeer />? </h3>
+  }
+}
 
 export default function Main({ navigation }) {
 
@@ -23,8 +30,18 @@ export default function Main({ navigation }) {
   let n = d.getDay();
   let dayOfWeek = days[n];
 
+  const [modalWindow, setModalWindow] = useState(false);
+
   return (
     <View style={gStyle.main}>
+      <Modal visible={modalWindow}>
+        <View style={gStyle.formAddPill}>
+          <View style={gStyle.formMainLineContainer}>
+            <Text style={styles.formPill}>Добавление лекарства</Text>
+            <AntDesign name="close" size={30} color="black" style={styles.buttonClose} onPress={() => setModalWindow(false)}/>
+          </View>
+        </View>  
+      </Modal>
       <Text style={ styles.header }>
         <p style={ styles.chooseDay }>Сегодня</p>
         <p style={ styles.day }>{dayOfWeek}, 6 ноября</p>
@@ -32,10 +49,7 @@ export default function Main({ navigation }) {
       {/*в data прописываем с каким массивом работаем*/}
       <FlatList style={styles.items} data={pills} renderItem={({item}) => (
         <TouchableOpacity style={styles.item} onPress={()=> navigation.navigate('PillCard', item)}>
-          <Image
-            style={{width: 46, height: 46}}
-            source={item.img}
-          />
+          <Image style={ styles.img } source={item.img}/>
           <View style={styles.itemDescription}>
             <View style={styles.itemLeftDescription}>
               <Text style={styles.title}>{ item.name }</Text>
@@ -48,6 +62,7 @@ export default function Main({ navigation }) {
           </View>
         </TouchableOpacity>
       )}/>
+      <AntDesign name="plussquare" size={55} style={styles.buttonAdd} onPress={() => setModalWindow(true)}/>
     </View>
   ); 
 }
@@ -80,6 +95,7 @@ const styles = StyleSheet.create({
   itemDescription: {
     marginLeft: 16,
     display: 'flex',
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     flexWrap: 'wrap',
@@ -88,6 +104,11 @@ const styles = StyleSheet.create({
   },
 
   itemLeftDescription: {
+  },
+
+  img: {
+    width: 46, 
+    height: 46
   },
 
   title: {
@@ -127,6 +148,31 @@ const styles = StyleSheet.create({
     fontFamily: 'mp-semi-bold',
     fontSize: 18,
     color: '#7E8B93'
+  },
+
+  buttonAdd: {
+    textAlign: 'right',
+    color: "#A75DFC",
+    borderRadius: 13
+  },
+
+  formAddPill: {
+
+  },
+
+  formMainLineContainer: {
+    margin: 0,
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between'
+  },
+
+  buttonClose: {
+   
+
   }
   
 });
