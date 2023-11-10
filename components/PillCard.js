@@ -10,7 +10,7 @@ export default function PillCard({ route }) {
 
   return (
     <View style={gStyle.main}>
-      <Image style={ styles.img } source={item.img}/>
+      <Image style={ styles.img } source={route.params.img}/>
       <Text style={gStyle.title}>{route.params.name}</Text>
       <Text style={gStyle.title}>{route.params.type}</Text>
       <Text style={gStyle.title}>{route.params.timeToTake}</Text>
