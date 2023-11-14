@@ -1,5 +1,6 @@
 # medtrack
 Приложение для отслеживания принятия лекарств на React Native
+
 ![Screenshot_72](https://github.com/EmmaMaltseva/medtrack/assets/92587254/bff983d7-ebbd-45ce-aa40-e41097618e4d)
 https://www.figma.com/file/o5lXpxf7zazWb2czW7pSMG/MedTrack?type=design&node-id=0-1&mode=design&t=SPMKRLE02ASFwUrL-0
 # 1 спринт 25.09 - 08.10
