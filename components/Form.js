@@ -14,7 +14,7 @@ export default function From({ addPill }) {
         action.resetForm();
       }}>
         {(props) => (
-          <View style={styles.formWithInputButton}> 
+          <View style={styles.formWithInputButton}>
             <TextInput
               style={styles.formInput}
               value={props.values.name} 
@@ -69,12 +69,13 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     fontSize: 16,
     fontFamily: 'mp-semi-bold',
-    border: 'none'
+    border: 'none',
+    margin: '10px'
   },
 
   buttonDone: {
     backgroundColor: '#2EC5CE',
-    color: "#2EC5CE"
+    color: "#2EC5CE",
   }
 
 });
