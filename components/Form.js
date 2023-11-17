@@ -64,12 +64,13 @@ const styles = StyleSheet.create({
   },
 
   formInput: {
+    paddingLeft: 10,
+    outlineStyle: 'none',
     lineHeight: 40,
     borderBottomColor: "#E5E6EB",
     borderBottomWidth: 1,
     fontSize: 16,
     fontFamily: 'mp-semi-bold',
-    border: 'none',
     margin: '10px'
   },
 
