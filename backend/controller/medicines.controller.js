@@ -17,6 +17,29 @@ class MedicinesController {
         res.json(medicines.rows)
     }
 
+    // Получить одни лекартсва
+    async getOneMedicines(req,res) {
+        const id = req.params.id
+        const medicine = await db.query('SELECT * FROM medicines where id = $1', [id])
+        res.json(medicine.rows[0])
+    }
+
+    // Обновить Лекарства
+    async updateMedicicnes(req,res) {
+        const {id, name, title, dozimitr, instruction, id_users, id_reminders, id_shedules} = req.body
+        const medicine = await db.query('UPDATE medicines set name = $1, title = $2, dozimitr = $3, instruction = $4, id_users = $5, id_reminders = $6, id_shedules = $7 where id = $8 RETURNING *',
+            [name, title, dozimitr, instruction, id_users, id_reminders, id_shedules, id]
+        )
+        res.json(medicine.rows[0])
+    }
+
+    //Удалить юзера
+    async deleteMedicines(req,res) {
+        const id = req.params.id
+        const medicine = await db.query('DELETE FROM medicines where id = $1', [id])
+        res.json(medicine.rows[0])
+    }
+
 }
 
 module.exports = new MedicinesController()
