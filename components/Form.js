@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, TextInput, Button } from 'react-native';
+import { StyleSheet, View, TextInput, Button, Pressable, Text } from 'react-native';
 import { gStyle } from '../styles/style';
 import { Formik } from 'formik';
 
@@ -32,6 +32,7 @@ export default function From({ addPill }) {
             <TextInput
               style={styles.formInput}
               value={props.values.dose}
+              keyboardType='number-pad'
               placeholderTextColor="#7E8B93" 
               placeholder='Разовая доза' 
               onChangeText={props.handleChange('dose')} 
@@ -50,7 +51,9 @@ export default function From({ addPill }) {
               placeholder='Время приема' 
               onChangeText={props.handleChange('timeToTake')} 
             /> 
-            <Button style={styles.buttonDone} title='Готово' onPress={props.handleSubmit}/>
+            <Pressable style={styles.buttonDone} title='Готово' onPress={props.handleSubmit}>
+              <Text style={styles.textButton}>Готово</Text>
+            </Pressable>
           </View>
         )}
       </Formik>
@@ -64,18 +67,32 @@ const styles = StyleSheet.create({
   },
 
   formInput: {
+    paddingLeft: 10,
+    outlineStyle: 'none',
     lineHeight: 40,
     borderBottomColor: "#E5E6EB",
     borderBottomWidth: 1,
     fontSize: 16,
     fontFamily: 'mp-semi-bold',
-    border: 'none',
     margin: '10px'
   },
 
   buttonDone: {
     backgroundColor: '#2EC5CE',
-    color: "#2EC5CE",
+    height: 44,
+    width: 270,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 0,
+    marginHorizontal: 'auto',
+    marginTop: 50,
+    borderRadius: 11
+  },
+
+  textButton: {
+    color: 'white',
+    fontSize: 18,
+    fontFamily: 'mp-semi-bold',
   }
 
 });
