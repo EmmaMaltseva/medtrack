@@ -190,6 +190,7 @@ const styles = StyleSheet.create({
   },
 
   formAddPillTitleText: {
+    marginTop: 60,
     paddingLeft: 80,
     fontFamily: 'mp-semi-bold',
     fontSize: 18,
@@ -197,6 +198,7 @@ const styles = StyleSheet.create({
   },
 
   buttonClose: {
+    marginTop: 60,
     marginRight: 20
   }
   
