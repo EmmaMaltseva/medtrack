@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, FlatList, Image, Button, Modal } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, FlatList, Image, Pressable, Modal } from 'react-native';
 import { gStyle } from '../styles/style';
 import { AntDesign } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons'; 
 import Form from "./Form"
 class Question extends React.Component {
   render() {
@@ -68,7 +69,7 @@ export default function Main({ navigation }) {
       </Text>
       {/*в data прописываем с каким массивом работаем*/}
       <FlatList style={styles.items} data={pills} renderItem={({item}) => (
-        <TouchableOpacity style={styles.item} onPress={()=> navigation.navigate('PillCard', item)}>
+        <TouchableOpacity style={styles.item} onPress={()=> navigation.navigate('SettingsScreen', item)}>
           <Image style={ styles.img } source={item.img}/>
           <View style={styles.itemDescription}>
             <View style={styles.itemLeftDescription}>
@@ -83,6 +84,15 @@ export default function Main({ navigation }) {
         </TouchableOpacity>
       )}/>
       <AntDesign name="plussquare" size={55} style={styles.buttonAdd} onPress={() => setModalWindow(true)}/>
+      <View style={styles.containerSwitchScreen}>
+        <Pressable style={styles.buttonMedShedule}>
+        <Image style={ styles.imgMainButton } source={require('../assets/img/mainScreen.png')}/>
+          <Text style={styles.textButtonMedShedule}>Журнал</Text>
+        </Pressable>
+        <TouchableOpacity onPress={()=> navigation.navigate('SettingsScreen', pills[1])}>
+          <Ionicons style={styles.buttonSettings} name="ios-settings-sharp" size={24} color="#B4C1D1" />
+        </TouchableOpacity>
+      </View>
     </View>
   ); 
 }
@@ -200,6 +210,36 @@ const styles = StyleSheet.create({
   buttonClose: {
     marginTop: 60,
     marginRight: 20
+  },
+
+  containerSwitchScreen: {
+    paddingTop: 20,
+    marginTop: 20,
+    marginHorizontal: 10,
+    borderTopColor: "#F1F1F1",
+    borderTopWidth: 1,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+
+  buttonMedShedule: {
+    height: 40,
+    width: 110,
+    backgroundColor: "rgba(140, 48, 245, 0.13)",
+    borderRadius: 30,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+
+  textButtonMedShedule: {
+    color: "#A75DFC",
+    fontSize: 13,
+    fontFamily: "mp-bold"
+  },
+
+  buttonSettings: {
+    marginTop: 8
   }
   
 });
