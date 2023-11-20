@@ -32,6 +32,7 @@ export default function From({ addPill }) {
             <TextInput
               style={styles.formInput}
               value={props.values.dose}
+              type="number"
               placeholderTextColor="#7E8B93" 
               placeholder='Разовая доза' 
               onChangeText={props.handleChange('dose')} 
