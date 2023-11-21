@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import { StyleSheet, View, Text, TextInput } from 'react-native';
 import { gStyle } from '../styles/style';
 
-export default function PillCard({ route }) {
+export default function SettingsScreen() {
   
   /*const loadScene = () => {
     navigation.goBack();
@@ -10,10 +10,13 @@ export default function PillCard({ route }) {
 
   return (
     <View style={gStyle.main}>
-      <Image style={ styles.img } source={route.params.img}/>
-      <Text style={gStyle.title}>{route.params.name}</Text>
-      <Text style={gStyle.title}>{route.params.type}</Text>
-      <Text style={gStyle.title}>{route.params.timeToTake}</Text>
+      <Text>Настройки</Text>
+      <Text>Профиль</Text>
+      <TextInput
+        style={styles.formInput}
+        placeholder='Имя' 
+        placeholderTextColor="#7E8B93"
+      /> 
     </View>
   );
 }
