@@ -5,6 +5,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons'; 
 import Form from "./Form"
 import SwitchScreens from './SwitchScreens';
+import { Agenda } from 'react-native-calendars';
 class Question extends React.Component {
   render() {
     return <h3> Lets go for a <FaBeer />? </h3>
@@ -64,36 +65,50 @@ export default function Main({ navigation }) {
           <Form addPill={addPill}/>
         </View>  
       </Modal>
-      <Text style={ styles.header }>
-        <p style={ styles.chooseDay }>Сегодня</p>
-        <p style={ styles.day }>{dayOfWeek}, 6 ноября</p>
-      </Text>
-      {/*в data прописываем с каким массивом работаем*/}
-      <FlatList style={styles.items} data={pills} renderItem={({item}) => (
-        <TouchableOpacity style={styles.item} onPress={()=> navigation.navigate('SettingsScreen')}>
-          <Image style={ styles.img } source={item.img}/>
-          <View style={styles.itemDescription}>
-            <View style={styles.itemLeftDescription}>
-              <Text style={styles.title}>{ item.name }</Text>
-              <View style={styles.doseType}>
-                <Text style={styles.dose}>{ item.dose }</Text>
-                <Text style={styles.type}>{ item.type }</Text>
-              </View>
-            </View>
-            <Text style={styles.timeToTake}>{ item.timeToTake }</Text>
-          </View>
-        </TouchableOpacity>
-      )}/>
-      <AntDesign name="plussquare" size={55} style={styles.buttonAdd} onPress={() => setModalWindow(true)}/>
       
-      <View style={styles.containerSwitchScreen}>
-        <Pressable style={styles.buttonMedShedule}>
-        <Image style={ styles.imgMainButton } source={require('../assets/img/mainScreen.png')}/>
-          <Text style={styles.textButtonMedShedule}>Журнал</Text>
-        </Pressable>
-        <TouchableOpacity onPress={()=> navigation.navigate('SettingsScreen')}>
-          <Ionicons style={styles.buttonSettings} name="ios-settings-sharp" size={22} color="#B4C1D1" />
-        </TouchableOpacity>
+      <Agenda
+        items={{
+          '2023-11-22': [{name: 'item 1 - any js object'}],
+          '2023-11-23': [{name: 'item 2 - any js object', height: 20}],
+        }}
+        onDayPress={day => {
+          console.log('selected day', day);
+        }}
+        style={ styles.calendar }
+      />
+
+      <View style={ styles.mainContainer }>
+        <Text style={ styles.header }>
+          <p style={ styles.chooseDay }>Сегодня</p>
+          <p style={ styles.day }>{dayOfWeek}, 6 ноября</p>
+        </Text>
+        {/*в data прописываем с каким массивом работаем*/}
+        <FlatList style={styles.items} data={pills} renderItem={({item}) => (
+          <TouchableOpacity style={styles.item} onPress={()=> navigation.navigate('SettingsScreen')}>
+            <Image style={ styles.img } source={item.img}/>
+            <View style={styles.itemDescription}>
+              <View style={styles.itemLeftDescription}>
+                <Text style={styles.title}>{ item.name }</Text>
+                <View style={styles.doseType}>
+                  <Text style={styles.dose}>{ item.dose }</Text>
+                  <Text style={styles.type}>{ item.type }</Text>
+                </View>
+              </View>
+              <Text style={styles.timeToTake}>{ item.timeToTake }</Text>
+            </View>
+          </TouchableOpacity>
+        )}/>
+        <AntDesign name="plussquare" size={55} style={styles.buttonAdd} onPress={() => setModalWindow(true)}/>
+        
+        <View style={styles.containerSwitchScreen}>
+          <Pressable style={styles.buttonMedShedule}>
+          <Image style={ styles.imgMainButton } source={require('../assets/img/mainScreen.png')}/>
+            <Text style={styles.textButtonMedShedule}>Журнал</Text>
+          </Pressable>
+          <TouchableOpacity onPress={()=> navigation.navigate('SettingsScreen')}>
+            <Ionicons style={styles.buttonSettings} name="ios-settings-sharp" size={22} color="#B4C1D1" />
+          </TouchableOpacity>
+        </View>   
       </View>
     </View>
   ); 
@@ -106,6 +121,16 @@ const styles = StyleSheet.create({
     color: '#4B3367',
     lineHeight: 'normal',
     textAlign: 'left'
+  },
+
+  mainContainer: {
+    padding: 20,
+    backgroundColor: 'rgb(255,255,255)',
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24
+  },
+  calendar: {
+
   },
 
   items: {
