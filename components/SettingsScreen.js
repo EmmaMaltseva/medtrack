@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Text, TextInput } from 'react-native';
 import { gStyle } from '../styles/style';
 
-export default function SettingsScreen() {
+export default function SettingsScreen({ navigation }) {
   
   /*const loadScene = () => {
     navigation.goBack();

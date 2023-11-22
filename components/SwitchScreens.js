@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Pressable, Text, Image, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; 
 
-export default function SwitchScreens({ navigation }) {
+export default function SwitchScreens({ navigation, props }) {
   
   return (
     <view>
@@ -11,7 +11,7 @@ export default function SwitchScreens({ navigation }) {
         <Image style={ styles.imgMainButton } source={require('../assets/img/mainScreen.png')}/>
           <Text style={styles.textButtonMedShedule}>Журнал</Text>
         </Pressable>
-        <TouchableOpacity onPress={()=> navigation.navigate('SettingsScreen')}>
+        <TouchableOpacity onPress={props.onPress}>
           <Ionicons style={styles.buttonSettings} name="ios-settings-sharp" size={22} color="#B4C1D1" />
         </TouchableOpacity>
       </View>
