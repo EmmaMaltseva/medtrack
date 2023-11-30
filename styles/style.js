@@ -8,5 +8,6 @@ export const gStyle = StyleSheet.create({
   main: {
     flex: 1,
     backgroundColor: '#F4F5F7',
+    height: '100%'
   }
 })

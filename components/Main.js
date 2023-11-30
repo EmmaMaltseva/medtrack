@@ -1,23 +1,17 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, FlatList, Image, Pressable, Modal } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, FlatList, Image, Pressable, Modal, SafeAreaView, ScrollView } from 'react-native';
 import { gStyle } from '../styles/style';
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons'; 
 import Form from "./Form"
 import SwitchScreens from './SwitchScreens';
 import { Agenda } from 'react-native-calendars';
-class Question extends React.Component {
-  render() {
-    return <h3> Lets go for a <FaBeer />? </h3>
-  }
-}
 
 export default function Main({ navigation }) {
-
   const [pills, setPills] = useState([
-    { id: '1', name: 'Спазган', type: 'таблетка', dose: 1, unit: 'шт', timeToTake: '12:30', img: require('../assets/img/pill.png')},
-    { id: '2', name: 'Хлоргексилин', type: 'процедура', dose: 1, unit: 'шт', timeToTake: '13:30', img: require('../assets/img/injection.png')},
-    { id: '3', name: 'Левомицетин', type: 'капля', dose: 3, unit: 'мл', timeToTake: '22:30', img: require('../assets/img/drop.png')}
+    { date: '2023-11-30', id: '1', name: 'Спазган', type: 'таблетка', dose: 1, unit: 'шт', timeToTake: '12:30', img: require('../assets/img/pill.png')},
+    { date: '2023-12-01', id: '2', name: 'Хлоргексилин', type: 'процедура', dose: 1, unit: 'шт', timeToTake: '13:30', img: require('../assets/img/injection.png')},
+    { date: '2023-12-02', id: '3', name: 'Левомицетин', type: 'капля', dose: 3, unit: 'мл', timeToTake: '22:30', img: require('../assets/img/drop.png')}
   ]);
 
   let days = [
@@ -29,6 +23,7 @@ export default function Main({ navigation }) {
     'Пятница',
     'Суббота'
   ];
+
   let d = new Date();
   let n = d.getDay();
   let dayOfWeek = days[n];
@@ -65,22 +60,15 @@ export default function Main({ navigation }) {
           <Form addPill={addPill}/>
         </View>  
       </Modal>
-      
-      <Agenda
-        items={{
-          '2023-11-22': [{name: 'item 1 - any js object'}],
-          '2023-11-23': [{name: 'item 2 - any js object', height: 20}],
-        }}
-        onDayPress={day => {
-          console.log('selected day', day);
-        }}
-        style={ styles.calendar }
-      />
+
+      <SafeAreaView style={styles.container}>
+        <Agenda item={pills}/>
+      </SafeAreaView>
 
       <View style={ styles.mainContainer }>
         <Text style={ styles.header }>
           <p style={ styles.chooseDay }>Сегодня</p>
-          <p style={ styles.day }>{dayOfWeek}, 6 ноября</p>
+          <p style={ styles.day }>{dayOfWeek}, 23 ноября</p>
         </Text>
         {/*в data прописываем с каким массивом работаем*/}
         <FlatList style={styles.items} data={pills} renderItem={({item}) => (
@@ -115,6 +103,27 @@ export default function Main({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  /**Стили для Agenda */
+  container: {
+    flex: 1,
+    justifyContent: 'center'
+  },
+
+  item: {
+    backgroundColor: 'white',
+    flex: 1,
+    borderRadius: 5,
+    padding: 10,
+    marginRight: 10,
+    marginTop: 17
+  },
+
+  itemText: {
+    color: '#888',
+    fontSize: 16,
+  },
+  /** */
+
   header: {
     margin: 0,
     fontSize: 20,
@@ -127,10 +136,8 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: 'rgb(255,255,255)',
     borderTopLeftRadius: 24,
-    borderTopRightRadius: 24
-  },
-  calendar: {
-
+    borderTopRightRadius: 24,
+    height: '100vh'
   },
 
   items: {
@@ -272,3 +279,20 @@ const styles = StyleSheet.create({
  
 });
 
+{/*<Agenda
+          selected="2022-12-01"
+          items={{
+            '2022-12-01': [{name: 'Cycling'}, {name: 'Walking'}, {name: 'Running'}],
+            '2022-12-02': [{name: 'Writing'}]
+          }}
+          renderItem={(item, isFirst) => (
+            <TouchableOpacity style={styles.item}>
+              <Text style={styles.itemText}>{item.name}</Text>
+            </TouchableOpacity>
+          )}
+          theme={{
+            calendarBackground: '#F4F5F7',
+            dayTextColor: '#554863',
+            agendaTodayColor: 'red'
+          }}
+        />*/}
