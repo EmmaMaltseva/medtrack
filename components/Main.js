@@ -49,6 +49,7 @@ export default function Main({ navigation }) {
     setModalWindow(false);
   }
 
+
   return (
     <View style={gStyle.main}>
       <Modal visible={modalWindow}>
@@ -60,7 +61,7 @@ export default function Main({ navigation }) {
           <Form addPill={addPill}/>
         </View>  
       </Modal>
-
+      
       <SafeAreaView style={styles.container}>
         <Agenda item={pills}/>
       </SafeAreaView>
@@ -103,7 +104,7 @@ export default function Main({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  /**Стили для Agenda */
+/**Стили для Agenda */
   container: {
     flex: 1,
     justifyContent: 'center'
