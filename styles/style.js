@@ -7,10 +7,7 @@ export const gStyle = StyleSheet.create({
 
   main: {
     flex: 1,
-    padding: 20,
-    paddingTop: 50,
-    backgroundColor: 'rgb(255,255,255)',
-    borderTopLeftRadius: 24,
-    borderTopRightRadius: 24
+    backgroundColor: '#F4F5F7',
+    height: '100%'
   }
 })

@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, FlatList, Image, Button, Modal } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, FlatList, Image, Pressable, Modal, SafeAreaView, ScrollView } from 'react-native';
 import { gStyle } from '../styles/style';
 import { AntDesign } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons'; 
 import Form from "./Form"
-class Question extends React.Component {
-  render() {
-    return <h3> Lets go for a <FaBeer />? </h3>
-  }
-}
+import SwitchScreens from './SwitchScreens';
+import { Agenda } from 'react-native-calendars';
 
 export default function Main({ navigation }) {
-
   const [pills, setPills] = useState([
-    { id: '1', name: 'Спазган', type: 'таблетка', dose: 1, unit: 'шт', timeToTake: '12:30', img: require('../assets/img/pill.png')},
-    { id: '2', name: 'Хлоргексилин', type: 'процедура', dose: 1, unit: 'шт', timeToTake: '13:30', img: require('../assets/img/injection.png')},
-    { id: '3', name: 'Левомицетин', type: 'капля', dose: 3, unit: 'мл', timeToTake: '22:30', img: require('../assets/img/drop.png')}
+    { date: '2023-11-30', id: '1', name: 'Спазган', type: 'таблетка', dose: 1, unit: 'шт', timeToTake: '12:30', img: require('../assets/img/pill.png')},
+    { date: '2023-12-01', id: '2', name: 'Хлоргексилин', type: 'процедура', dose: 1, unit: 'шт', timeToTake: '13:30', img: require('../assets/img/injection.png')},
+    { date: '2023-12-02', id: '3', name: 'Левомицетин', type: 'капля', dose: 3, unit: 'мл', timeToTake: '22:30', img: require('../assets/img/drop.png')}
   ]);
 
   let days = [
@@ -26,6 +23,7 @@ export default function Main({ navigation }) {
     'Пятница',
     'Суббота'
   ];
+
   let d = new Date();
   let n = d.getDay();
   let dayOfWeek = days[n];
@@ -51,6 +49,7 @@ export default function Main({ navigation }) {
     setModalWindow(false);
   }
 
+
   return (
     <View style={gStyle.main}>
       <Modal visible={modalWindow}>
@@ -62,38 +61,84 @@ export default function Main({ navigation }) {
           <Form addPill={addPill}/>
         </View>  
       </Modal>
-      <Text style={ styles.header }>
-        <p style={ styles.chooseDay }>Сегодня</p>
-        <p style={ styles.day }>{dayOfWeek}, 6 ноября</p>
-      </Text>
-      {/*в data прописываем с каким массивом работаем*/}
-      <FlatList style={styles.items} data={pills} renderItem={({item}) => (
-        <TouchableOpacity style={styles.item} onPress={()=> navigation.navigate('PillCard', item)}>
-          <Image style={ styles.img } source={item.img}/>
-          <View style={styles.itemDescription}>
-            <View style={styles.itemLeftDescription}>
-              <Text style={styles.title}>{ item.name }</Text>
-              <View style={styles.doseType}>
-                <Text style={styles.dose}>{ item.dose }</Text>
-                <Text style={styles.type}>{ item.type }</Text>
+      
+      <SafeAreaView style={styles.container}>
+        <Agenda item={pills}/>
+      </SafeAreaView>
+
+      <View style={ styles.mainContainer }>
+        <Text style={ styles.header }>
+          <p style={ styles.chooseDay }>Сегодня</p>
+          <p style={ styles.day }>{dayOfWeek}, 23 ноября</p>
+        </Text>
+        {/*в data прописываем с каким массивом работаем*/}
+        <FlatList style={styles.items} data={pills} renderItem={({item}) => (
+          <TouchableOpacity style={styles.item} onPress={()=> navigation.navigate('SettingsScreen')}>
+            <Image style={ styles.img } source={item.img}/>
+            <View style={styles.itemDescription}>
+              <View style={styles.itemLeftDescription}>
+                <Text style={styles.title}>{ item.name }</Text>
+                <View style={styles.doseType}>
+                  <Text style={styles.dose}>{ item.dose }</Text>
+                  <Text style={styles.type}>{ item.type }</Text>
+                </View>
               </View>
+              <Text style={styles.timeToTake}>{ item.timeToTake }</Text>
             </View>
-            <Text style={styles.timeToTake}>{ item.timeToTake }</Text>
-          </View>
-        </TouchableOpacity>
-      )}/>
-      <AntDesign name="plussquare" size={55} style={styles.buttonAdd} onPress={() => setModalWindow(true)}/>
+          </TouchableOpacity>
+        )}/>
+        <AntDesign name="plussquare" size={55} style={styles.buttonAdd} onPress={() => setModalWindow(true)}/>
+        
+        <View style={styles.containerSwitchScreen}>
+          <Pressable style={styles.buttonMedShedule}>
+          <Image style={ styles.imgMainButton } source={require('../assets/img/mainScreen.png')}/>
+            <Text style={styles.textButtonMedShedule}>Журнал</Text>
+          </Pressable>
+          <TouchableOpacity onPress={()=> navigation.navigate('SettingsScreen')}>
+            <Ionicons style={styles.buttonSettings} name="ios-settings-sharp" size={22} color="#B4C1D1" />
+          </TouchableOpacity>
+        </View>   
+      </View>
     </View>
   ); 
 }
 
 const styles = StyleSheet.create({
+/**Стили для Agenda */
+  container: {
+    flex: 1,
+    justifyContent: 'center'
+  },
+
+  item: {
+    backgroundColor: 'white',
+    flex: 1,
+    borderRadius: 5,
+    padding: 10,
+    marginRight: 10,
+    marginTop: 17
+  },
+
+  itemText: {
+    color: '#888',
+    fontSize: 16,
+  },
+  /** */
+
   header: {
     margin: 0,
     fontSize: 20,
     color: '#4B3367',
     lineHeight: 'normal',
     textAlign: 'left'
+  },
+
+  mainContainer: {
+    padding: 20,
+    backgroundColor: 'rgb(255,255,255)',
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
+    height: '100vh'
   },
 
   items: {
@@ -200,7 +245,55 @@ const styles = StyleSheet.create({
   buttonClose: {
     marginTop: 60,
     marginRight: 20
+  },
+
+  containerSwitchScreen: {
+    paddingTop: 20,
+    marginTop: 20,
+    marginHorizontal: 10,
+    borderTopColor: "#F1F1F1",
+    borderTopWidth: 1,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+
+  buttonMedShedule: {
+    height: 40,
+    width: 110,
+    backgroundColor: "rgba(140, 48, 245, 0.13)",
+    borderRadius: 30,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+
+  textButtonMedShedule: {
+    color: "#A75DFC",
+    fontSize: 13,
+    fontFamily: "mp-bold"
+  },
+
+  buttonSettings: {
+    marginTop: 8
   }
-  
+
+ 
 });
 
+{/*<Agenda
+          selected="2022-12-01"
+          items={{
+            '2022-12-01': [{name: 'Cycling'}, {name: 'Walking'}, {name: 'Running'}],
+            '2022-12-02': [{name: 'Writing'}]
+          }}
+          renderItem={(item, isFirst) => (
+            <TouchableOpacity style={styles.item}>
+              <Text style={styles.itemText}>{item.name}</Text>
+            </TouchableOpacity>
+          )}
+          theme={{
+            calendarBackground: '#F4F5F7',
+            dayTextColor: '#554863',
+            agendaTodayColor: 'red'
+          }}
+        />*/}

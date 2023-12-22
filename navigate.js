@@ -1,6 +1,6 @@
 import React from 'react';
 import Main from './components/Main'
-import PillCard from './components/PillCard'
+import SettingsScreen from './components/SettingsScreen'
 import { gStyle } from './styles/style'
 
 import { createStackNavigator } from '@react-navigation/stack';
@@ -16,16 +16,14 @@ export default function Navigate() {
         component={Main}
         options={
           {
-            title: 'Главная',
-            headerStyle: {backgroundColor: '#F4F5F7', height: 90, borderBottomColor: '#F4F5F7'},
-            headerTitleStyle: { alignItems: 'center'}
+            headerStyle: {backgroundColor: '#F4F5F7', height: 0},
           }
         }
       />
       <Stack.Screen 
-        name="PillCard"
-        component={PillCard}
-        options={{title: 'Карточка лекарства'}}
+        name="SettingsScreen"
+        component={SettingsScreen}
+        options={{title: 'Настройки'}}
       />
     </Stack.Navigator>
   </NavigationContainer>;
