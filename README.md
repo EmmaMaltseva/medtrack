@@ -27,6 +27,7 @@ https://www.figma.com/file/o5lXpxf7zazWb2czW7pSMG/MedTrack?type=design&node-id=0
 2. Добавить Уведомления - Комаров
 
 # Класс создания, получения, обновления и удаления пользователя
+`
 class UserController{
 
     //Создание юзера
@@ -67,9 +68,9 @@ class UserController{
     }
 
 }
-
+`
 #Компонент Карточки лекарства, принимает route для переключения между экранами
-
+`
 export default function PillCard({ route }) {
 
   return (
@@ -81,9 +82,9 @@ export default function PillCard({ route }) {
     </View>
   );
 }
-
+`
 #Компонент формы добавления лекарства. Принимает функцию AddPill для загрузки добавленного лекарства в массив
-
+`
 export default function From({ addPill }) {
   
   return (
@@ -177,3 +178,4 @@ const styles = StyleSheet.create({
   }
 
 });
+`
