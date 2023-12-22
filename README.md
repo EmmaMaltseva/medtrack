@@ -69,8 +69,8 @@ class UserController{
 
 }
 ```
-#Компонент Карточки лекарства, принимает route для переключения между экранами
-`
+# Компонент Карточки лекарства, принимает route для переключения между экранами
+```
 export default function PillCard({ route }) {
 
   return (
@@ -82,9 +82,9 @@ export default function PillCard({ route }) {
     </View>
   );
 }
-`
-#Компонент формы добавления лекарства. Принимает функцию AddPill для загрузки добавленного лекарства в массив
-`
+```
+# Компонент формы добавления лекарства. Принимает функцию AddPill для загрузки добавленного лекарства в массив
+```
 export default function From({ addPill }) {
   
   return (
@@ -178,4 +178,4 @@ const styles = StyleSheet.create({
   }
 
 });
-`
+```
